@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import { saveAs } from 'file-saver';
 import './App.css'
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
   const [minimo, setMinimo] = useState(0);
   // Rango máximo de valoración
   const [maximo, setMaximo] = useState(5);
+  // Crear fichero
+  const [newFile, setNewFile] = useState("");
 
   /* Leemos fichero con la matriz */
   const readFile = (e) => {
@@ -37,6 +40,11 @@ function App() {
     reader.onerror = () => {
       console.log(reader.error)
     }
+  }
+  // Guardamos en el fichero
+  const createFile = () => {
+    const blob = new Blob([newFile], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "resultado.txt");
   }
 
   /* Imprimimos la matriz leida */
@@ -311,6 +319,8 @@ function App() {
     }
     let elemento2 = document.getElementById("VecinosUtilizados");
     elemento2.innerHTML = cadenaIncognita;
+    let file = cadenaIncognita + "\n" + cadena + "\n" + cadenaMatrix;
+    setNewFile(file);
   }
 
   return (
@@ -339,6 +349,7 @@ function App() {
       <br></br>
       <br></br>
       <button onClick={filtradoColaborativo}>Ejecutar</button>
+      <button onClick={createFile}>Guardar</button>
       <pre id='MatrixUtilidad' className=''></pre>
       <pre id='SimilitudUsuarios'></pre>
       <pre id='VecinosUtilizados'></pre>
