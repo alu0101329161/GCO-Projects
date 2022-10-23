@@ -1,16 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
+  // Matrix en formato cadena
   const [myValue, setMyValue] = useState('');
+  // Matrix formateada y normalizada
   const [matrix, setMatrix] = useState('');
+  // Array con la media de usuarios
   const [media, setMedia] = useState('');
+  // Matrix con la similitud entre usuarios
   const [matrixSimilitud, setMatrixSimilitud] = useState('');
+  // Metrica elegida(3 opciones)
   const [metrica, setMetrica] = useState('Correlación Pearson');
+  // Cantidad vecinos a considerar
   const [vecino, setVecinos] = useState(2);
+  // Tipo de predicción(2 opciones)
   const [prediccion, setPrediccion] = useState('Predicción simple');
+  // Rango minimo de valoración
   const [minimo, setMinimo] = useState(0);
+  // Rango máximo de valoración
   const [maximo, setMaximo] = useState(5);
 
   /* Leemos fichero con la matriz */
@@ -29,12 +38,14 @@ function App() {
       console.log(reader.error)
     }
   }
+
   /* Imprimimos la matriz leida */
   function showContent() {
     var elemento = document.getElementById('contenido-archivo');
     elemento.innerHTML = myValue;
     separateElements();
   }
+
   /* Separamos los elementos de la matriz */
   function separateElements() {
     var elemento = document.getElementById('contenido-archivo');
@@ -42,7 +53,6 @@ function App() {
     var arrays = matriz.split('\n');
     /* Eliminamos el ultimo elemento del array(empty string) */
     arrays.pop();
-    console.table(arrays);
     arrays.forEach(function (array, i) {
       arrays[i] = array.split(' ');
     }
@@ -52,19 +62,19 @@ function App() {
       var iteration_array = [];
       for (var j = 0; j < arrays[i].length - 1; j++) {
         if (arrays[i][j] != "-") {
+          // Normalizamos los valores
           iteration_array.push((parseInt(arrays[i][j]) - minimo) / (maximo - minimo));
-          // iteration_array.push((parseInt(arrays[i][j])));
         } else {
           iteration_array.push(arrays[i][j]);
         }
       }
       int_arrays.push(iteration_array);
     }
-    console.table(int_arrays);
     setMatrix(int_arrays);
   }
+
+  /* Calculamos la media de cada usuario */
   const calculateAverage = () => {
-    /* Calculamos la media de cada usuario */
     let mediaUser = [];
     for (let i = 0; i < matrix.length; i++) {
       let suma = 0;
@@ -81,30 +91,32 @@ function App() {
     return mediaUser;
   }
 
+  /* Aplicamos algoritmo filtrado */
   const filtradoColaborativo = () => {
     var mediaUser = calculateAverage();
     let matrizSimilitud = [];
     switch (metrica) {
       case "Correlación Pearson":
-        console.log("Correlación de Pearson");
         matrizSimilitud = pearson(mediaUser);
         break;
       case "Distancia Euclídea":
-        console.log("Distancia Euclídea");
         matrizSimilitud = euclidea();
         break;
       case "Distancia Coseno":
-        console.log("Distancia Coseno");
         matrizSimilitud = coseno();
         break;
       default:
         break;
     }
-    despejarIncognita(matrizSimilitud, mediaUser);
+    let resultado = despejarIncognita(matrizSimilitud, mediaUser);
+    showFinal(resultado, matrizSimilitud);
   }
 
+  /* Despejamos las incognitas de cada usuario
+  *  y guardamos los valores de las predicciones
+  *  más los vecinos elegido por el usuario
+  */
   const despejarIncognita = (arraySimilitud, mediaUser) => {
-    console.log("Despejando incognita");
     let vecinos = [];
     let vecinosResult = [];
     let resultado = [];
@@ -112,23 +124,24 @@ function App() {
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] == "-") {
-          vecinos = maxVecinos(arraySimilitud, matrix.length * i, matrix.length * (i + 1)) // X vecinos cercanos y sus indices
+          // X vecinos cercanos y sus indices
+          vecinos = maxVecinos(arraySimilitud, matrix.length * i, matrix.length * (i + 1))
           for (let k = 0; k < vecinos.length; k++) {
             if (prediccion == "Predicción simple") {
-              console.log("Predicción simple");
               if (matrix[vecinos[k].indice][j] != "-") {
                 numerador += vecinos[k].valor * matrix[vecinos[k].indice][j];
                 denominador += Math.abs(vecinos[k].valor);
               } else {
+                // el vecino no tenia valoracion para ese item
                 vecinos[k].indice = -1;
               }
             }
             if (prediccion == "Diferencia con la Media") {
-              console.log("Predicción diferencia con la media");
               if (matrix[vecinos[k].indice][j] != "-") {
                 numerador += vecinos[k].valor * (matrix[vecinos[k].indice][j] - mediaUser[vecinos[k].indice]);
                 denominador += Math.abs(vecinos[k].valor);
               } else {
+                // el vecino no tenia valoracion para ese item
                 vecinos[k].indice = -1;
               }
             }
@@ -139,11 +152,10 @@ function App() {
         }
       }
     }
-    console.log(vecinosResult);
-    console.log(resultado);
     return { vecinosResult, resultado };
   }
 
+  /* Obtenemos los vecinos más cercanos de la matrix de similitud */
   const maxVecinos = (vecinos, index, max) => {
     let arraySimilitud = vecinos.slice(0);
     let obj = {
@@ -160,19 +172,20 @@ function App() {
       for (let j = index; j < max; j++) {
         if (arraySimilitud[j] > obj.valor && arraySimilitud[j] != 2) {
           obj.indice = j;
-          obj.valor = arraySimilitud[j]; 
+          obj.valor = arraySimilitud[j];
         }
       }
+      // sacamos el mayor valor, para no repetirlo
       arraySimilitud[obj.indice] = -1;
       obj.indice = obj.indice - index;
+      // Guardamos una copia para no modificar las referencia
       arrayObject.push(Object.assign({}, obj));
     }
     return arrayObject;
   }
 
-  // Distancia Coseno (0 - 1)
+  // Distancia Coseno rango(0 - 1)
   const coseno = () => {
-    console.log("Coseno");
     let matrixCoseno = [];
     let numerador = 0, denominador1 = 0, denominador2 = 0;
     for (let i = 0; i < matrix.length; i++) {
@@ -188,18 +201,17 @@ function App() {
           matrixCoseno.push(numerador / (Math.sqrt(denominador1) * Math.sqrt(denominador2)));
           numerador = 0, denominador1 = 0, denominador2 = 0;
         } else {
+          // No se puede calcular la distancia consigo mismo
           matrixCoseno.push(2);
         }
       }
     }
     setMatrixSimilitud(matrixCoseno);
-    console.table(matrixCoseno);
     return matrixCoseno;
   }
 
-  // Distancia Euclidea (0 - MAX)
+  // Distancia Euclidea rango(0 - MAX)
   const euclidea = () => {
-    console.log("Euclidea");
     let matrixEuclidea = [];
     let resultado = 0, contador = 0;
     for (let i = 0; i < matrix.length; i++) {
@@ -215,18 +227,17 @@ function App() {
           matrixEuclidea.push(Math.sqrt(resultado) / Math.sqrt(contador));
           resultado = 0, contador = 0;
         } else {
+          // No se puede calcular la distancia consigo mismo
           matrixEuclidea.push(2);
         }
       }
     }
     setMatrixSimilitud(matrixEuclidea);
-    console.table(matrixEuclidea);
     return matrixEuclidea;
   }
 
-  // Correlación de Pearson (-1 - 1)
+  // Correlación de Pearson rango(-1 - 1)
   const pearson = (mediaUser) => {
-    console.log("Pearson");
     let matrixPearson = [];
     let result = 0;
     let numerador = 0, denominador1 = 0, denominador2 = 0;
@@ -250,12 +261,61 @@ function App() {
       }
     }
     setMatrixSimilitud(matrixPearson);
-    console.table(matrixPearson)
     return matrixPearson;
   }
+  // Mostramos la matriz de utilidad con los calculos realizados
+  const showFinal = (result, matrixSimilitud) => {
+    let resultado = result.resultado;
+    let contador = 0;
+    let cadenaMatrix = "";
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j] == "-") {
+          cadenaMatrix += "|" + (resultado[contador] * (maximo - minimo) + minimo).toFixed(2) + " | ";
+          contador++;
+        } else {
+          cadenaMatrix += "|" + (matrix[i][j] * (maximo - minimo) + minimo).toFixed(2) + " | ";
+        }
+      }
+      cadenaMatrix += "\n";
+    }
+    let elemento = document.getElementById("MatrixUtilidad");
+    elemento.innerHTML = cadenaMatrix;
+    // Mostramos la similitud de los usuarios
+    let cadena = "";
+    let contador1 = 0;
+    let contador2 = 0;
+    for (let i = 0; i < matrixSimilitud.length; i++) {
+      if (contador1 == matrix.length) {
+        contador1 = 0;
+        contador2++;
+      }
+      if (contador2 + 1 != i % matrix.length + 1) {
+        cadena += "Similitud entre usuario " + (contador2 + 1) + " y " + (i % matrix.length + 1) + " = " + (matrixSimilitud[i] * (maximo - minimo) + minimo).toFixed(2) + "\n";
+      }
+      contador1++;
+    }
+    let elemento1 = document.getElementById("SimilitudUsuarios");
+    elemento1.innerHTML = cadena;
+    // Mostramos los vecinos seleccionados para cada usuario
+    let cadenaIncognita = "";
+    let indiceVecino = " ";
+    for (let i = 0; i < result.vecinosResult.length; i++) {
+      for (let j = 0; j < result.vecinosResult[i].length; j++) {
+        if (result.vecinosResult[i][j].indice != -1) {
+          indiceVecino += "vecino: " + (result.vecinosResult[i][j].indice + 1) + "=> valor: " + (result.vecinosResult[i][j].valor * (maximo - minimo) + minimo).toFixed(2) + " ";
+        }
+      }
+      cadenaIncognita += "Incónita " + (i + 1) + " = " + indiceVecino + "\n";
+      indiceVecino = " ";
+    }
+    let elemento2 = document.getElementById("VecinosUtilizados");
+    elemento2.innerHTML = cadenaIncognita;
+  }
+
   return (
     <>
-      <h1>Sistema de Recomendación</h1>
+      <h1 className='bg-red'>Sistema de Recomendación</h1>
       <h2>Seleccione el archivo que contiene la matriz:</h2>
       <a href="https://reactjs.org" target="_blank">
         <img src={reactLogo} className="logo react" alt="React logo" />
@@ -282,6 +342,9 @@ function App() {
       <br></br>
       <br></br>
       <button onClick={filtradoColaborativo}>Ejecutar</button>
+      <pre id='MatrixUtilidad' className=''></pre>
+      <pre id='SimilitudUsuarios'></pre>
+      <pre id='VecinosUtilizados'></pre>
     </>
   )
 }
