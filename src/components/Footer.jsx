@@ -1,4 +1,3 @@
-
 function Footer() {
         return (
             <footer>
