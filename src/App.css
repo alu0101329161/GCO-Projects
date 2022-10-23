@@ -4,17 +4,21 @@
   padding: 2rem;
   text-align: center;
 }
+
 input:invalid {
   border: 1px solid red;
- }
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -23,6 +27,7 @@ input:invalid {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -40,4 +45,69 @@ input:invalid {
 
 .read-the-docs {
   color: #888;
+}
+
+.file {
+  background-color: rgba(0, 0, 0, 0.676);
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 auto 0;
+  min-height: 15px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 400px;
+  box-shadow: 0 0 1em #ccc;
+  transition: box-shadow 0.5s;
+}
+.file:hover {
+  box-shadow: 0 0 2em #ccc;
+}
+
+.footerMain {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-shadow: white 0.1em 0.1em 0.2em;
+  border-radius: 50px;
+  box-shadow: 0 0 1em #ccc;
+  text-decoration: underline;
+  transition: box-shadow 0.5s;
+}
+
+.imagenesFooter {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.headerMain {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+}
+
+.headerMain li {
+  margin: 0 10px;
+
+}
+
+.headerMain li a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: white 0.1em 0.1em 0.2em;
+  transition: color 0.5s;
+}
+
+.headerMain li a:hover {
+  color: yellow;
 }

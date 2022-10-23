@@ -315,12 +315,9 @@ function App() {
 
   return (
     <>
-      <h1 className='bg-red'>Sistema de Recomendación</h1>
+      <h1 className=''>Sistema de Recomendación</h1>
       <h2>Seleccione el archivo que contiene la matriz:</h2>
-      <a href="https://reactjs.org" target="_blank">
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </a>
-      <input type="file" id="file-input" onChange={readFile} />
+      <input className='file' type="file" id="file-input" onChange={readFile} />
       <h3>Contenido del archivo:</h3>
       <pre id="contenido-archivo"></pre>
       <button onClick={showContent}>Mostrar Matriz</button>

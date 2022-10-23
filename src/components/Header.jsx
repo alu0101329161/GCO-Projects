@@ -1,13 +1,10 @@
 function Header() {
     return (
-        <header class="header">
-            <a href="#default" class="logo">CompanyLogo</a>
-            <div class="header-right">
-                <a class="active" href="#home">Home</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
-            </div>
-        </header>
+        <ul className="headerMain">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
     );
 }
 
