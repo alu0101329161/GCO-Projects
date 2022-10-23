@@ -99,8 +99,30 @@ function App() {
     return mediaUser;
   }
 
+  // Comprobamos que los parametros son correctos
+  const comprobarError = () => {
+    if(vecino > matrix.length){
+      alert("El número de vecinos no puede ser mayor que el número de usuarios");
+      return false;
+    }
+    if(minimo >= maximo){
+      alert("El rango mínimo debe ser menor que el rango máximo");
+      return false;
+    }
+    if(isNaN(maximo) || isNaN(minimo)){
+      alert("El rango mínimo y máximo deben ser números");
+      return false;
+    }
+    if(isNaN(vecino)){
+      alert("El número de vecinos debe ser un número");
+      return false;
+    }
+    return true;
+  }
+
   /* Aplicamos algoritmo filtrado */
   const filtradoColaborativo = () => {
+    comprobarError();
     var mediaUser = calculateAverage();
     let matrizSimilitud = [];
     switch (metrica) {
