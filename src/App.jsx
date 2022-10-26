@@ -321,7 +321,7 @@ function App() {
         contador2++;
       }
       if (contador2 + 1 != i % matrix.length + 1) {
-        cadena += "Similitud entre usuario " + (contador2 + 1) + " y " + (i % matrix.length + 1) + " = " + (matrixSimilitud[i] * (maximo - minimo) + minimo).toFixed(2) + "\n";
+        cadena += "Similitud entre usuario " + (contador2 + 1) + " y " + (i % matrix.length + 1) + " = " + (matrixSimilitud[i]).toFixed(2) + " sobre 1" + "\n";
       }
       contador1++;
     }
