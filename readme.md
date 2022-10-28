@@ -10,7 +10,7 @@
 Este proyecto consiste en un sistema de recomendación de empleo. Se basa en el algoritmo de filtrado colaborativo, que consiste en recomendar productos a un usuario en base a los gustos de otros usuarios similares.
 
 ## Link Página Web
-[Página Web](https://alu0101329161.github.io/React-Filter-System/)
+#### **[Página Web](https://alu0101329161.github.io/React-Filter-System/)**
 
 ---
 
@@ -29,7 +29,7 @@ Finalmente, puede ejecutar el proyecto con el siguiente comando.
 npm run dev
 ```
 ## Licencia 
-[MIT](https://choosealicense.com/licenses/mit/)
+#### **[MIT](https://choosealicense.com/licenses/mit/)**
 
 ---
 
@@ -49,11 +49,11 @@ La interfaz consta de varios elementos, todos ellos parte de un único proceso s
       - &emsp;Predicción simple
       - &emsp;Diferencia con la media
 
-**Ejecución**
+#### **Ejecución**
 
-Una vez cargada la matriz y todos los parámetros, solo quedaría presionar el botón **[Ejecutar]**, que mostrará por pantalla tanto la matriz resultado como las similitudes calculadas en el proceso. Además
+Una vez cargada la matriz y todos los parámetros, solo quedaría presionar el botón **[Ejecutar]**, que mostrará por pantalla tanto la matriz resultado como las similitudes calculadas en el proceso.
 
-**Guardar**
+#### **Guardar**
 
 Para guardar la matriz resultado, está disponible el botón **[Guardar]**, que se encargará de servirnos un fichero de texto con la solución.
 
@@ -72,10 +72,8 @@ Para guardar la matriz resultado, está disponible el botón **[Guardar]**, que 
     - **main.jsx**&ensp;➔&ensp;Convergencia de componentes
   - **/public/**&ensp;➔&ensp;Recursos generales
   - **/img/**&ensp;➔&ensp;Imágenes explicativas (No relevante para la aplicación)
-<br>
----
 
-<br>
+---
 
 ## Backstage
 > ¿Cómo funciona la aplicación?
@@ -84,6 +82,7 @@ Para guardar la matriz resultado, está disponible el botón **[Guardar]**, que 
 
 - Para eso, separar la cadena de texto en números independientes y reordenarlos en una matriz, se construyó la función `separateElements()`:
 
+<br>
 
 ## Función `separateElements()`
 ```js
@@ -178,9 +177,9 @@ const filtradoColaborativo = () => {
 <br> 
 
 ## Métricas
-> Tres formas distintas de calcular similitudes
+Tres formas distintas de calcular similitudes.
 
-### Pearson
+### 1. Pearson
 ```js
 const pearson = (mediaUser) => {
   let matrixPearson = [];
@@ -214,7 +213,7 @@ const pearson = (mediaUser) => {
 - Cabe destacar que siempre se ha tenido la cautela de omitir aquellas iteraciones donde se tropiece con una incógnita *(símbolo '-')*
 <br>
 
-### Coseno
+### 2. Coseno
 ```js
 const coseno = () => {
   let matrixCoseno = [];
@@ -244,7 +243,7 @@ const coseno = () => {
 - De igual manera que para calcular mediante correlación de Pearson, para la Distancia Coseno podemos hacer una traducción a código de la fórmula matemática mediante bucles for y acumuladores.
 <br>
 
-### Euclídea
+### 3. Euclídea
 ```js
 const euclidea = () => {
   let matrixEuclidea = [];
@@ -278,7 +277,7 @@ const euclidea = () => {
 
 <br>
 
-## 'despejarIncognita'
+## `despejarIncognita`
 > Sacando las conclusiones
 
 Una vez se haya pasado por el cálculo de similitudes, mediante cualquiera de los métodos escogidos, la aplicación puede finalmente deducir los valores restantes de la matriz.
