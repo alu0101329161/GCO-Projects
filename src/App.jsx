@@ -298,10 +298,12 @@ function App() {
     let resultado = result.resultado;
     let contador = 0;
     let cadenaMatrix = "";
+    let cadenaResultado = "";
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] == "-") {
-          cadenaMatrix += "|" + (resultado[contador] * (maximo - minimo) + minimo).toFixed(2) + " | ";
+          cadenaMatrix += "|[" + (resultado[contador] * (maximo - minimo) + minimo).toFixed(2) + "]| ";
+          cadenaResultado += "|[" + (resultado[contador] * (maximo - minimo) + minimo).toFixed(2) + "]| ";
           contador++;
         } else {
           cadenaMatrix += "|" + (matrix[i][j] * (maximo - minimo) + minimo).toFixed(2) + " | ";
@@ -311,6 +313,8 @@ function App() {
     }
     let elemento = document.getElementById("MatrixUtilidad");
     elemento.innerHTML = cadenaMatrix;
+    let elemento4 = document.getElementById("MatrixResultado");
+    elemento4.innerHTML = cadenaResultado;
     // Mostramos la similitud de los usuarios
     let cadena = "";
     let contador1 = 0;
@@ -341,7 +345,7 @@ function App() {
     }
     let elemento2 = document.getElementById("VecinosUtilizados");
     elemento2.innerHTML = cadenaIncognita;
-    let file = cadenaIncognita + "\n" + cadena + "\n" + cadenaMatrix;
+    let file = cadenaIncognita + "\n" + cadena + "\n" + cadenaMatrix +"\n" + cadenaResultado;
     setNewFile(file);
   }
 
@@ -375,6 +379,7 @@ function App() {
       <pre id='MatrixUtilidad' className=''></pre>
       <pre id='SimilitudUsuarios'></pre>
       <pre id='VecinosUtilizados'></pre>
+      <pre id='MatrixResultado'></pre>
     </>
   )
 }
