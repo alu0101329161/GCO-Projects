@@ -9,11 +9,10 @@
 ## Descripción:
 Este proyecto consiste en un sistema de recomendación de empleo. Se basa en el algoritmo de filtrado colaborativo, que consiste en recomendar productos a un usuario en base a los gustos de otros usuarios similares.
 
-### **[Link para probar la web online](hhttps://alu0101329161.github.io/React-Filter-System/)**
-<br>
+## Link Página Web
+[Página Web](https://alu0101329161.github.io/React-Filter-System/)
 
 ---
-<br>
 
 ## Uso local
 Para poder desplegar el sistema de recomendación en __local__ primero clone el repositorio.
@@ -31,10 +30,8 @@ npm run dev
 ```
 ## Licencia 
 [MIT](https://choosealicense.com/licenses/mit/)
-<br>
 
 ---
-<br>
 
 ## Uso de la aplicación
 > Explicación paso a paso de cómo utilizar nuestra app
@@ -59,10 +56,8 @@ Una vez cargada la matriz y todos los parámetros, solo quedaría presionar el b
 **Guardar**
 
 Para guardar la matriz resultado, está disponible el botón **[Guardar]**, que se encargará de servirnos un fichero de texto con la solución.
-<br>
 
 ---
-<br>
 
 ## Estructura del proyecto
 > Descripción de las carpetas y ficheros que componen el proyecto
@@ -90,7 +85,7 @@ Para guardar la matriz resultado, está disponible el botón **[Guardar]**, que 
 - Para eso, separar la cadena de texto en números independientes y reordenarlos en una matriz, se construyó la función `separateElements()`:
 
 
-## Función 'separateElements()'
+## Función `separateElements()`
 ```js
 function separateElements() {
   var elemento = document.getElementById('contenido-archivo');
@@ -126,7 +121,7 @@ function separateElements() {
 
 <br>
 
-## Función 'calculateAverage()'
+## Función `calculateAverage()`
 > Cálculo de las medias
 
 Con la matriz separada por números, podemos realizar el que seguramente sea uno de los cálculos más importantes de todo el proceso: Las medias de cada fila.
@@ -154,7 +149,7 @@ const calculateAverage = () => {
 
 <br>
 
-## Función 'filtradoColaborativo()'
+## Función `filtradoColaborativo()`
 > Hora de escoger el tipo de métrica
 ```js
 const filtradoColaborativo = () => {
@@ -184,7 +179,6 @@ const filtradoColaborativo = () => {
 
 ## Métricas
 > Tres formas distintas de calcular similitudes
-<br>
 
 ### Pearson
 ```js
@@ -332,7 +326,6 @@ const despejarIncognita = (arraySimilitud, mediaUser) => {
 
 - Esto se repetirá, claro está, tantas veces como incógnitas encuentre el bucle inicial. Es decir, se recorrerá completamente la matriz hasta haber finiquitado el trabajo.
 
-<br>
 
 ## Resto del código
 
