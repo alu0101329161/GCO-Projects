@@ -8,6 +8,7 @@
 
 ## Descripción:
 Este proyecto consiste en un sistema de recomendación de empleo. Se basa en el algoritmo de filtrado colaborativo, que consiste en recomendar productos a un usuario en base a los gustos de otros usuarios similares.
+Cabe destacar que se ha normalizado la matrix de entrada para que los valores de las calificaciones estén entre 0 y 1. A su vez los valores de similaridad entre usuarios también están entre 0 y 1 teniendo en cuenta los diferentes rangos de opciones.
 
 ## Link Página Web
 #### **[Página Web](https://alu0101329161.github.io/React-Filter-System/)**
