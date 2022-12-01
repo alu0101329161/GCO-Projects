@@ -42,7 +42,7 @@ bool File::operator<(const File file) const { //Sobrecarga del operador <
 }
 
 void File::set_words(vector<string> words) {
-    for (int i = 0; i < words.size(); i++) {
+    for (long unsigned int i = 0; i < words.size(); i++) {
         pair<string, int> newpair;
         newpair.first = words[i];
         newpair.second = 1;

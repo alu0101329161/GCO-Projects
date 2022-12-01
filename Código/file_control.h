@@ -18,7 +18,7 @@ class File_Control {
     string docs_dir_;
     vector <string> corpus_files_;
     vector <string> stop_words_files_;
-    vector <string> docs_files_;
+    string docs_file_;
     const char *corpusdir_;
     const char *stopwordsdir_;
     const char *docsdir_;
@@ -26,7 +26,7 @@ class File_Control {
     set<string> stop_words_;
     vector<pair<string,vector<string>>> corpus_;
   public:
-    File_Control();
+    File_Control(string);
     ~File_Control();
     void get_files();
     void print_files();
