@@ -2,7 +2,6 @@
 
 File::File() {
   // TODO Auto-generated constructor stub
-
 }
 
 File::~File() {
@@ -89,6 +88,6 @@ void File::set_similitud_ordenada(vector<pair<double, string>> similitud_ordenad
   similitud_ordenada_ = similitud_ordenada;
 }
 
-bool File::operator<(const File file) const { //Sobrecarga del operador <
+bool File::operator<(const File file) const {  // Sobrecarga del operador <
   return name_ < file.name_;
 }

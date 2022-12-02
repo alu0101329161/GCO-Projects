@@ -8,20 +8,20 @@ Sistema::Sistema(set<File> docs) {
   for (File aux : docs) {
     total_words_ += aux.get_content().size();
   }
-  //Conteo de palabras
-  //Cada documento
+  // Conteo de palabras
+  // Cada documento
   for (File aux : docs) {
     int frecuencia = 0, frecuencia_total = 0;
-    //Cada palabra del documento
+    // Cada palabra del documento
     for (int i = 0; i < aux.get_content().size(); i++) {
       frecuencia = 0;
-      //Busqueda en el documento
+      // Busqueda en el documento
       for (int j = 0; j < aux.get_content().size(); j++) {
         if (aux.get_content()[i] == aux.get_content()[j]) {
           frecuencia++;
         }
       }
-      //Busqueda en todos los documentos
+      // Busqueda en todos los documentos
       frecuencia_total = 0;
       bool encontrado = false;
       for (File aux2 : docs) {
@@ -36,7 +36,6 @@ Sistema::Sistema(set<File> docs) {
         }
       }
       words.insert(make_pair(aux.get_content()[i], make_pair(frecuencia, frecuencia_total)));
-
     }
     file.set_name(aux.get_name());
     file.set_path(aux.get_path());
@@ -45,14 +44,14 @@ Sistema::Sistema(set<File> docs) {
     docs_.insert(file);
     words.clear();
   }
-  //Calculo de tf e idf
+  // Calculo de tf e idf
   calcular_tf();
-  //Calculo de tf-idf
-  //Longitud del vector (raiz cuadrada de la suma de los cuadrado de los terminos de cada documento)
+  // Calculo de tf-idf
+  // Longitud del vector (raiz cuadrada de la suma de los cuadrado de los terminos de cada documento)
   calcular_longitud();
-  //Normalizacion de tf-idf
+  // Normalizacion de tf-idf
   calcular_tf_idf();
-  //Calcular similitud coseno entre documentos
+  // Calcular similitud coseno entre documentos
   calcular_similitud();
 
   ordenar_similitud();
@@ -65,11 +64,11 @@ Sistema::~Sistema() {
 void Sistema::calcular_tf() {
   set<File> docs2;
   for (File aux : docs_) {
-    vector<pair<string, double>> tf; // tf = 1 + log10(frecuencia)
+    vector<pair<string, double>> tf;  // tf = 1 + log10(frecuencia)
     for (pair<string, pair<int, int>> aux2 : aux.get_words()) {
       tf.push_back(make_pair(aux2.first, 1 + log10(aux2.second.first)));
     }
-    vector<pair<string, double>> idf; // idf = log10(total_docs_/frecuencia_total)
+    vector<pair<string, double>> idf;  // idf = log10(total_docs_/frecuencia_total)
     for (pair<string, pair<int, int>> aux2 : aux.get_words()) {
       double aux3 = (total_docs_ / aux2.second.second);
       idf.push_back(make_pair(aux2.first, (log10(aux3))));
@@ -143,7 +142,6 @@ void Sistema::ordenar_similitud() {
     aux.set_similitud_ordenada(similitud_ordenada);
     docs2.insert(aux);
     similitud_ordenada.clear();
-
   }
   docs_ = docs2;
 }
@@ -153,7 +151,8 @@ void Sistema::mostrar_docs() {
   for (File aux : docs_) {
     cout << "Nombre: " << aux.get_name() << endl;
 
-    cout << "Ruta: " << aux.get_path() << "\n" << endl;
+    cout << "Ruta: " << aux.get_path() << "\n"
+         << endl;
 
     int it = 0, aux3 = 10;
     flag = false;
@@ -164,22 +163,20 @@ void Sistema::mostrar_docs() {
         printf("%15s ", aux2.c_str());
       }
 
-      cout << endl << "TF:      ";
+      cout << endl
+           << "TF:      ";
 
       for (int i = it; i < aux3; i++) {
-
         printf("%15f ", aux.get_tf()[i].second);
       }
       cout << endl;
       cout << "IDF:     ";
       for (int i = it; i < aux3; i++) {
-
         printf("%15f ", aux.get_idf()[i].second);
       }
       cout << endl;
       cout << "TF-IDF:  ";
       for (int i = it; i < aux3; i++) {
-
         printf("%15f ", aux.get_tf_idf()[i].second);
       }
       cout << endl;
@@ -195,7 +192,8 @@ void Sistema::mostrar_docs() {
         flag = true;
       }
     }
-    cout << "Longitud: " << aux.get_longitud() << "\n" << endl;
+    cout << "Longitud: " << aux.get_longitud() << "\n"
+         << endl;
   }
 }
 

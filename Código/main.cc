@@ -1,11 +1,12 @@
 #include <iostream>
+
 #include "sistema.h"
+#include "usage.h"
 
 using namespace std;
 
-
 int main(int argc, char *argv[]) {
-
+  Usage(argc, argv);
   File_Control file_control;
   file_control.load_docs();
   file_control.remove_stop_words();

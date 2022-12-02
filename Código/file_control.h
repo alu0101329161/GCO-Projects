@@ -1,12 +1,14 @@
+#include <dirent.h>
+#include <unistd.h>
+
+#include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <set>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <dirent.h>
-#include <fstream>
-#include <sstream>
-#include <filesystem>
-#include <unistd.h>
-#include <set>
+
 #include "file.h"
 using namespace std;
 
@@ -25,27 +27,28 @@ class File_Control {
   set<File> docs_;
   set<string> stop_words_;
   vector<pair<string, vector<string>>> corpus_;
+
  public:
   File_Control();
   ~File_Control();
   set<File> get_docs();
   void get_files();
   void print_files();
-  //Lectura de archivos
+  // Lectura de archivos
   vector<string> obtener_archivos(const char *);
   void load_docs();
   vector<string> readfile(string);
-  //Stop-words
+  // Stop-words
   void remove_stop_words();
   void read_stop_words();
-  //Limpieza de documentos
+  // Limpieza de documentos
   vector<string> limpieza_doc(vector<string>);
   vector<string> split(vector<string>);
   vector<string> split_coma(vector<string>);
   vector<string> minusculas(vector<string>);
   vector<string> quitarvacios(vector<string>);
   vector<string> eliminar_caracteres(vector<string>);
-  //Lematizar
+  // Lematizar
   void lematizar();
   void read_corpus();
   void add_corpus(string, string);
