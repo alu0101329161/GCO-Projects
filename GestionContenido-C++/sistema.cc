@@ -162,7 +162,12 @@ void Sistema::mostrar_docs() {
         string aux2 = aux.get_tf()[i].first;
         printf("%15s ", aux2.c_str());
       }
+       cout << endl
+           << "TF:      ";
 
+      for (int i = it; i < aux3; i++) {
+        printf("%15d ", i);
+      }
       cout << endl
            << "TF:      ";
 
