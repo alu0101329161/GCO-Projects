@@ -163,7 +163,7 @@ void Sistema::mostrar_docs() {
         printf("%15s ", aux2.c_str());
       }
        cout << endl
-           << "TF:      ";
+           << "Indice:  ";
 
       for (int i = it; i < aux3; i++) {
         printf("%15d ", i);
