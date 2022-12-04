@@ -151,25 +151,22 @@ void Sistema::mostrar_docs() {
   for (File aux : docs_) {
     cout << "Nombre: " << aux.get_name() << endl;
 
-    cout << "Ruta: " << aux.get_path() << "\n"
-         << endl;
+    cout << "Ruta: " << aux.get_path() << "\n" << endl;
 
     int it = 0, aux3 = 10;
     flag = false;
     while (it <= aux.get_tf().size()) {
-      cout << "Palabra: ";
+      cout << "Término: ";
       for (int i = it; i < aux3; i++) {
         string aux2 = aux.get_tf()[i].first;
         printf("%15s ", aux2.c_str());
       }
-       cout << endl
-           << "Indice:  ";
+       cout << endl << "Indice:  ";
 
       for (int i = it; i < aux3; i++) {
         printf("%15d ", i);
       }
-      cout << endl
-           << "TF:      ";
+      cout << endl << "TF:      ";
 
       for (int i = it; i < aux3; i++) {
         printf("%15f ", aux.get_tf()[i].second);
@@ -197,8 +194,7 @@ void Sistema::mostrar_docs() {
         flag = true;
       }
     }
-    cout << "Longitud: " << aux.get_longitud() << "\n"
-         << endl;
+    cout << "Longitud: " << aux.get_longitud() << "\n" << endl;
   }
 }
 
