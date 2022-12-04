@@ -48,11 +48,11 @@ La interfaz consta de varios elementos:
 
 **Esquema de directorios**
   - `/corpus/`&ensp;➔&ensp;Baúl de corpus
-    - **corpus-en.txt/**&ensp;➔&ensp;Donde se encuentra el idioma es de corpus.
-  - `/docs/*`&ensp;➔&ensp;Baúl de docs
-      - **documents-01.txt/**&ensp;➔&ensp;Donde se encuentra el idioma del fichero.txt
+    - **corpus-en.txt/**&ensp;➔&ensp;Donde se encuentra el idioma de corpus.
+  - `/docs/`&ensp;➔&ensp;Baúl de docs
+      - **documents-01.txt/**&ensp;➔&ensp;Donde se encuentra el fichero.txt para el documento
   - `/stop-words/`&ensp;➔&ensp;Baúl de stop words
-      - **stop-words-en.txt/**&ensp;➔&ensp;Donde se encuentra elstop word
+      - **stop-words-en.txt/**&ensp;➔&ensp;Donde se encuentra el fichero.txt para el stop words
   - `file_control.cc`&ensp;➔&ensp;Fichero de control en .cc
   - `file_control.h`&ensp;➔&ensp;Fichero de control en .h
   - `file.cc`&ensp;➔&ensp; Fichero .cc
@@ -71,6 +71,8 @@ La interfaz consta de varios elementos:
 > ¿Cómo funciona el programa?
 
 - Como en cualquier programa, el desarrollo empieza resolviendo una serie de problemas planteados de inicio. En este caso, sabemos que el programa se ejecutará y se mostrará una serie de mensajes seguido de un sistema de recomendación basado en el contenido. 
+
+En la carpeta `/docs/`, `/corpus/` y `/stop-words/` se pueden agregar todos los archivos que sean necesarios siempre y cuando sigan el formato de ejemplo, así sirve para comparar ejemplos.
 
 ## Desarrollo del programa
 
