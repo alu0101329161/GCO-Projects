@@ -33,12 +33,13 @@ La interfaz consta de varios elementos:
   - 3) `Docs files`: Fichero .txt en cuestión.
   - 4) `Nombre`: Nombre del documento.
   - 5) `Ruta`: Ruta del directorio donde se encuentra el .txt.
-  - 6) `Palabra`: Palabras que contienen dentro del fichero .txt.
-  - 7) `TF`: (Term Frequency). Cantidad de veces que aparece una palabra.
-  - 8) `IDF`: (Inverse Document Frequency). Reduce el peso de los términos que aparecen en los documentos.
-  - 9) `TF-IDF`: (Term Frequency – Inverse Document Frequency). Codifica documentos en un espacio Euclídeo multi-dimensional.
-  - 10) `Longitud`: Longitud del fichero .txt
-  - 11) `Tabla de similitud`: Similaridad coseno entre cada par de documentos.
+  - 6) `Término`: Palabras que contienen dentro del fichero .txt.
+  - 7) `Indice`: Indice que contienen dentro del fichero .txt.
+  - 8) `TF`: (Term Frequency). Cantidad de veces que aparece una palabra.
+  - 9) `IDF`: (Inverse Document Frequency). Reduce el peso de los términos que aparecen en los documentos.
+  - 10) `TF-IDF`: (Term Frequency – Inverse Document Frequency). Codifica documentos en un espacio Euclídeo multi-dimensional.
+  - 11) `Longitud`: Longitud del fichero .txt
+  - 12) `Tabla de similitud`: Similaridad coseno entre cada par de documentos.
 
 ---
 
