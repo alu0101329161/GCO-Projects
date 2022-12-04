@@ -19,6 +19,10 @@ Luego, se ejecuta el comando **./main** y automáticamente se podrá ver todas l
 ```bash
 ./main
 ```
+En caso de querer visualizar mejor los resultados
+```bash
+./main >> file.txt
+```
 
 ## Licencia 
 #### **[MIT](https://choosealicense.com/licenses/mit/)**
